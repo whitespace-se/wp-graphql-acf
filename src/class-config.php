@@ -348,6 +348,13 @@ class Config {
 			return false;
 		}
 
+		// Skip fields with same name and hope they’re compatible
+		static $registered_fields = [];
+		if(isset($registered_fields[$type_name][$field_name])) {
+			return false;
+		}
+		$registered_fields[$type_name][$field_name] = true;
+
 		/**
 		 * filter the field config for custom field types
 		 *
